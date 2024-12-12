@@ -7,8 +7,13 @@ import Index from './pages/Index.jsx'
 function App() {
 
   const [films, setFilms] = useState([])
+  const [titleFilm, setTitleFilm] = useState([])
+  // const [originalTitleFilm, setOriginalTitleFilm] = useState([])
+  // const [languageFilm, setLanguageFilm] = useState([])
+  // const [voteFilm, setVote] = useState([])
 
-  function fetchData() {
+
+  function fetchFilms() {
     axios.get('https://api.themoviedb.org/3/search/movie', {
       params: { query: 'batman', language: 'en-US', page: '1' },
       headers: {
@@ -17,15 +22,16 @@ function App() {
       }
     })
       .then(res => {
-        console.log(res.data)
-        setFilms(res.data)
+        console.log(res.data.results)
+        setFilms(res.data.results)
+        setTitleFilm(res.data.results.map(e => e.title))
       })
       .catch(err => console.error(err))
   }
 
   return (
     <>
-      <GlobalContext.Provider value={{ films, fetchData }}>
+      <GlobalContext.Provider value={{ films, fetchFilms, titleFilm }}>
         <Index />
       </GlobalContext.Provider>
     </>

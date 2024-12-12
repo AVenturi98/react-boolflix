@@ -1,28 +1,27 @@
 import { useContext, useEffect } from "react"
 import GlobalContext from "../context/GlobalContext"
+import Card from "../components/Card"
 
 function Index() {
 
-    const { films, fetchData } = useContext(GlobalContext)
+    const { films, fetchFilms, titleFIlm } = useContext(GlobalContext)
 
     useEffect(() => {
-        fetchData()
+        fetchFilms()
     }, [])
 
     return (
         <>
-            <div>
-                {
-                    films.map(film =>
-                        <li key={film.id}>
-                            <div>{film.title}</div>
-                            <div>{film.original_title}</div>
-                            <div>{film.original_language}</div>
-                            <div>{film.vote_average}</div>
-                        </li>
-                    )
-                }
-            </div>
+            <ul>{
+                films.map((el, i) =>
+                    <li key={i}>
+                        <div >{el.title}</div>
+                        <div >{el.original_language}</div>
+                        <div >{el.original_title}</div>
+                        <div >{el.vote_average}</div>
+
+                    </li>)
+            }</ul>
         </>
     )
 }
