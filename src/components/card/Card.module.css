@@ -1,0 +1,16 @@
+.poster {
+    width: 100%;
+    min-height: 340px;
+    /* min-height: 100%; */
+}
+
+.poster:hover {
+    opacity: 0.4;
+    position: cover
+}
+
+.hoverCard {
+    background-color: black;
+    max-width: 250px;
+    min-height: 200px;
+}

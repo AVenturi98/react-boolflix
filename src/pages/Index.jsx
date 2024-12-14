@@ -1,20 +1,18 @@
 import { useContext, useEffect, useState } from "react"
 import GlobalContext from "../context/GlobalContext"
 import ItemsList from "../components/ItemsList"
+import Header from '../components/header/Header'
 
 
 function Index() {
 
-    const { fetchData, search, setSearch, films, series } = useContext(GlobalContext)
+    const { films, series } = useContext(GlobalContext)
 
 
 
     return (
         <>
-            <form onSubmit={(e) => e.preventDefault()}>
-                <input type="text" placeholder="cerca.." value={search} onChange={(e) => setSearch(e.target.value)} />
-                <input type="submit" onClick={() => fetchData()} value='Submit' />
-            </form>
+            <Header />
             <ItemsList items={films} title='Movies' />
             <ItemsList items={series} title='Series' />
         </>

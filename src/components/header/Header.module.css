@@ -1,0 +1,12 @@
+.navBar {
+    background-color: black;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: red;
+    text-shadow: 0 5px 10px rgb(245, 101, 101);
+}
