@@ -7,9 +7,11 @@ import flagES from '../../assets/es.png'
 // import { faStar as empty } from '@fortawesome/free-regular-svg-icons'
 // import { useState } from 'react'
 import st from './Card.module.css'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 export default function Card({ item = [] }) {
+
+    const [hoverCard, setHoverCard] = useState(false)
 
     const { title, original_title, original_language, vote_average, poster_path, overview } = item
 
@@ -28,17 +30,28 @@ export default function Card({ item = [] }) {
     // const fullStar = Array(vote).fill(<div><FontAwesomeIcon icon={faStar} /> </div>)
     // const emptyStar = Array(5 - vote).fill(<div><FontAwesomeIcon icon={empty} /> </div>)
 
+    function handle() {
+        setHoverCard(!hoverCard)
+    }
 
     return (
         <>
-            <img src={'https://image.tmdb.org/t/p/w200' + poster_path} alt={title} className={st.poster} />
-            < div className={st.hoverCard}>
-                <div>{title}</div>
-                <div>{original_title}</div>
-                {flagsLanguage[original_language] ? <img src={flagsLanguage[original_language]} /> : <p>{original_language}</p>}
-                <div>{fullStar + emptyStar}</div>
-            </div >
-
+            <div className={st.container} onMouseOver={handle} onMouseOut={handle}>
+                <img src={'https://image.tmdb.org/t/p/w200' + poster_path} alt={title} className={st.poster} />
+                {hoverCard && < div className={st.hoverCard}>
+                    <div><strong>Titolo: </strong> {title}</div>
+                    <div><strong>Titolo originale: </strong> {original_title}</div>
+                    <strong>Lingua: </strong>
+                    {flagsLanguage[original_language] ?
+                        <img src={flagsLanguage[original_language]} /> :
+                        <span>{original_language}</span>}
+                    <div><strong>Voto: </strong>{fullStar + emptyStar}</div>
+                    {/* <div>
+                        <strong>Overview: </strong>
+                        <span className={st.overview}>{overview}</span>
+                    </div> */}
+                </div >}
+            </div>
             {/* <div className='inline'>{[...fullStar, ...emptyStar]}</div> */}
 
         </>
