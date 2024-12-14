@@ -43,12 +43,6 @@ function App() {
       .catch(err => console.error(err))
   }
 
-  // useEffect(() => {
-  //   setFilms(films.filter((film) => film.title.includes(search)))
-  //   setSeries(series.filter((serie) => serie.title.includes(search)))
-  // }, [search])
-
-
   function fetchData() {
     fetchFilms()
     fetchSeries()
