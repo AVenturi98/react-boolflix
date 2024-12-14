@@ -31,12 +31,15 @@ export default function Card({ item = [] }) {
     // const emptyStar = Array(5 - vote).fill(<div><FontAwesomeIcon icon={empty} /> </div>)
 
     function handle() {
-        setHoverCard(!hoverCard)
+        setHoverCard(true)
     }
 
+    function handleOff() {
+        setHoverCard(false)
+    }
     return (
         <>
-            <div className={st.container} onMouseOver={handle} onMouseOut={handle}>
+            <div className={st.container} onMouseOver={handle} onMouseOut={handleOff}>
                 <img src={'https://image.tmdb.org/t/p/w200' + poster_path} alt={title} className={st.poster} />
                 {hoverCard && < div className={st.hoverCard}>
                     <div><strong>Titolo: </strong> {title}</div>
@@ -46,10 +49,10 @@ export default function Card({ item = [] }) {
                         <img src={flagsLanguage[original_language]} /> :
                         <span>{original_language}</span>}
                     <div><strong>Voto: </strong>{fullStar + emptyStar}</div>
-                    {/* <div>
+                    <div>
                         <strong>Overview: </strong>
                         <span className={st.overview}>{overview}</span>
-                    </div> */}
+                    </div>
                 </div >}
             </div>
             {/* <div className='inline'>{[...fullStar, ...emptyStar]}</div> */}
